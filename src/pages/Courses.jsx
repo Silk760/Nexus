@@ -25,7 +25,7 @@ const COURSES = [
     access: 'Paid',
     price: '$199',
     stripePriceId: '',   // Set from Stripe dashboard
-    salla: '#',
+
     color: '#78dce8',
   },
   {
@@ -35,7 +35,7 @@ const COURSES = [
     access: 'Paid',
     price: '$179',
     stripePriceId: '',
-    salla: '#',
+
     color: '#78dce8',
   },
   {
@@ -53,7 +53,7 @@ const COURSES = [
     access: 'Paid',
     price: '$149',
     stripePriceId: '',
-    salla: '#',
+
     color: '#a9dc76',
   },
   {
@@ -79,7 +79,7 @@ const COURSES = [
     access: 'Paid',
     price: '$219',
     stripePriceId: '',
-    salla: '#',
+
     color: '#c8a2ff',
   },
   {
@@ -97,7 +97,7 @@ const COURSES = [
     access: 'Paid',
     price: '$199',
     stripePriceId: '',
-    salla: '#',
+
     color: '#78dce8',
   },
   {
@@ -180,12 +180,6 @@ export default function Courses() {
                       </svg>
                       {checkingOut === course.slug ? 'Redirecting…' : 'Stripe'}
                     </button>
-                    <a className="pay-btn pay-btn--salla" href={course.salla} target="_blank" rel="noopener noreferrer">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8h16v10zm-8-3c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3z" />
-                      </svg>
-                      Salla
-                    </a>
                     <a className="pay-btn pay-btn--tabby" href="#" target="_blank" rel="noopener noreferrer">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M3 3h18v4H3V3zm0 7h18v4H3v-4zm0 7h18v4H3v-4z" />
@@ -208,8 +202,8 @@ export default function Courses() {
 
       <div className="section-callout" style={{ marginTop: '2.5rem' }}>
         Open courses are freely available to anyone worldwide. Paid courses include live instruction,
-        mentorship, project reviews, and certification. Pay securely via Stripe (international) or
-        Salla (regional). All course materials are designed with real-world application in mind.
+        mentorship, project reviews, and certification. Pay securely via Stripe, Tabby, or
+        Tamara. All course materials are designed with real-world application in mind.
       </div>
     </section>
   )

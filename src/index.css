@@ -1050,15 +1050,6 @@ body {
   background: rgba(99, 91, 255, 0.22);
 }
 
-.pay-btn--salla {
-  background: rgba(46, 204, 113, 0.1);
-  color: #2ecc71;
-}
-
-.pay-btn--salla:hover {
-  background: rgba(46, 204, 113, 0.2);
-}
-
 .pay-btn--tabby {
   background: rgba(58, 220, 195, 0.1);
   color: #3adcc3;
