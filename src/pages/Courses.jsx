@@ -186,6 +186,18 @@ export default function Courses() {
                       </svg>
                       Salla
                     </a>
+                    <a className="pay-btn pay-btn--tabby" href="#" target="_blank" rel="noopener noreferrer">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3 3h18v4H3V3zm0 7h18v4H3v-4zm0 7h18v4H3v-4z" />
+                      </svg>
+                      Tabby
+                    </a>
+                    <a className="pay-btn pay-btn--tamara" href="#" target="_blank" rel="noopener noreferrer">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm0-4h-2V7h2v8z" />
+                      </svg>
+                      Tamara
+                    </a>
                   </div>
                 </div>
               )}

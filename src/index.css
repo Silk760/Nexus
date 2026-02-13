@@ -1059,6 +1059,24 @@ body {
   background: rgba(46, 204, 113, 0.2);
 }
 
+.pay-btn--tabby {
+  background: rgba(58, 220, 195, 0.1);
+  color: #3adcc3;
+}
+
+.pay-btn--tabby:hover {
+  background: rgba(58, 220, 195, 0.2);
+}
+
+.pay-btn--tamara {
+  background: rgba(255, 112, 137, 0.1);
+  color: #ff7089;
+}
+
+.pay-btn--tamara:hover {
+  background: rgba(255, 112, 137, 0.2);
+}
+
 /* ─── Training Page ─── */
 .training-info-row {
   display: grid;

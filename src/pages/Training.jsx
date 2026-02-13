@@ -180,6 +180,18 @@ export default function Training() {
                       </svg>
                       Salla
                     </a>
+                    <a className="pay-btn pay-btn--tabby" href="#" target="_blank" rel="noopener noreferrer">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3 3h18v4H3V3zm0 7h18v4H3v-4zm0 7h18v4H3v-4z" />
+                      </svg>
+                      Tabby
+                    </a>
+                    <a className="pay-btn pay-btn--tamara" href="#" target="_blank" rel="noopener noreferrer">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm0-4h-2V7h2v8z" />
+                      </svg>
+                      Tamara
+                    </a>
                     <span className="batch-price-tag">{batch.price_sar?.toLocaleString()} SAR</span>
                   </div>
                 )}
@@ -236,6 +248,18 @@ export default function Training() {
                 <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8h16v10zm-8-3c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3z" />
               </svg>
               Pay via Salla
+            </a>
+            <a className="pay-btn pay-btn--tabby corporate-pay" href="#" target="_blank" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3 3h18v4H3V3zm0 7h18v4H3v-4zm0 7h18v4H3v-4z" />
+              </svg>
+              Pay via Tabby
+            </a>
+            <a className="pay-btn pay-btn--tamara corporate-pay" href="#" target="_blank" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm0-4h-2V7h2v8z" />
+              </svg>
+              Pay via Tamara
             </a>
             <a className="corporate-contact" href="mailto:nexus@example.com">
               Or contact us directly
