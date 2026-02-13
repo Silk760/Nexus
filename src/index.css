@@ -103,6 +103,7 @@ body {
   font-size: 0.85rem;
   font-weight: 500;
   cursor: pointer;
+  text-decoration: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -227,20 +228,33 @@ body {
   font-weight: 500;
 }
 
+/* ─── Page Content Wrapper ─── */
+.page-content {
+  animation: pageFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ─── Sections ─── */
 .section {
   padding: 7rem 5%;
   max-width: 900px;
   margin: 0 auto;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.section.visible {
+/* Page sections are always visible (no scroll-reveal) */
+.page-section {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 .section-number {
@@ -475,15 +489,12 @@ body {
   padding: 6rem 5%;
   max-width: 700px;
   margin: 0 auto;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.cta-section.visible {
+/* Page sections are always visible */
+.cta-section.page-section {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 .cta-section h2 {
@@ -746,6 +757,557 @@ body {
   color: #86868b;
 }
 
+/* ─── Seminars: Theme Blocks ─── */
+.seminar-themes {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+.seminar-theme-block {
+  background: #141414;
+  border: 1px solid #1a1a1a;
+  border-radius: 14px;
+  padding: 2rem;
+  transition: border-color 0.3s;
+}
+
+.seminar-theme-block:hover {
+  border-color: #282828;
+}
+
+.seminar-theme-header {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.seminar-theme-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.seminar-theme-name {
+  font-size: 1.15rem;
+  font-weight: 600;
+  flex: 1;
+}
+
+.seminar-theme-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #a9dc76;
+  background: rgba(169, 220, 118, 0.1);
+  padding: 0.25rem 0.7rem;
+  border-radius: 6px;
+  letter-spacing: 0.03em;
+}
+
+.seminar-speakers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.speaker-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  background: #0f0f0f;
+  border: 1px solid #1a1a1a;
+  border-radius: 10px;
+  transition: border-color 0.3s;
+}
+
+.speaker-card:hover {
+  border-color: #333;
+}
+
+.speaker-photo {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.speaker-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.speaker-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #f5f5f7;
+  margin-bottom: 0.15rem;
+}
+
+.speaker-talk {
+  font-size: 0.8rem;
+  color: #86868b;
+  font-weight: 400;
+  line-height: 1.4;
+  margin-bottom: 0.3rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.speaker-date {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  color: #6e6e73;
+  font-weight: 400;
+}
+
+.zoom-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  background: rgba(45, 140, 255, 0.1);
+  color: #5b9bf5;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: background 0.2s, color 0.2s;
+}
+
+.zoom-link:hover {
+  background: rgba(45, 140, 255, 0.2);
+  color: #7db4ff;
+}
+
+.zoom-icon {
+  flex-shrink: 0;
+}
+
+/* ─── Courses Grid ─── */
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.course-card {
+  background: #141414;
+  border: 1px solid #1a1a1a;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.course-card:hover {
+  border-color: #333;
+  transform: translateY(-2px);
+}
+
+.course-accent {
+  width: 4px;
+  flex-shrink: 0;
+}
+
+.course-body {
+  padding: 1.5rem 1.8rem;
+  flex: 1;
+}
+
+.course-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+}
+
+.course-instructor-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #86868b;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  letter-spacing: 0.03em;
+}
+
+.course-access {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  letter-spacing: 0.03em;
+}
+
+.course-access--open {
+  color: #a9dc76;
+  background: rgba(169, 220, 118, 0.1);
+}
+
+.course-access--paid {
+  color: #ffab70;
+  background: rgba(255, 171, 112, 0.1);
+}
+
+.course-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #f5f5f7;
+  line-height: 1.4;
+  margin-bottom: 0.8rem;
+}
+
+.course-instructor,
+.course-time {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: #86868b;
+  font-weight: 400;
+  margin-bottom: 0.4rem;
+}
+
+.course-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.8rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #c8a2ff;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.course-link:hover {
+  color: #d4b5ff;
+}
+
+.course-actions {
+  margin-top: 1rem;
+}
+
+.course-pay-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: #6e6e73;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.course-pay-buttons {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.pay-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.pay-btn:hover {
+  transform: translateY(-1px);
+}
+
+.pay-btn--stripe {
+  background: rgba(99, 91, 255, 0.12);
+  color: #7b73ff;
+}
+
+.pay-btn--stripe:hover {
+  background: rgba(99, 91, 255, 0.22);
+}
+
+.pay-btn--salla {
+  background: rgba(46, 204, 113, 0.1);
+  color: #2ecc71;
+}
+
+.pay-btn--salla:hover {
+  background: rgba(46, 204, 113, 0.2);
+}
+
+/* ─── Training Page ─── */
+.training-info-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+.training-info-card {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  background: #141414;
+  border: 1px solid #1a1a1a;
+  border-radius: 12px;
+  transition: border-color 0.3s;
+}
+
+.training-info-card:hover {
+  border-color: #333;
+}
+
+.training-info-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #c8a2ff;
+  letter-spacing: -0.02em;
+}
+
+.training-info-label {
+  font-size: 0.75rem;
+  color: #6e6e73;
+  margin-top: 0.2rem;
+  font-weight: 500;
+}
+
+.training-sub-heading {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #fff;
+  margin-top: 3rem;
+  margin-bottom: 1.2rem;
+}
+
+/* Batches */
+.batches-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 0.8rem;
+}
+
+.batch-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.3rem;
+  background: #141414;
+  border: 1px solid #1a1a1a;
+  border-radius: 10px;
+  transition: border-color 0.3s;
+}
+
+.batch-card:hover {
+  border-color: #333;
+}
+
+.batch-dates {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #b0b0b0;
+  font-weight: 500;
+}
+
+.batch-status {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  letter-spacing: 0.03em;
+}
+
+.batch-status--open {
+  color: #a9dc76;
+  background: rgba(169, 220, 118, 0.1);
+}
+
+.batch-status--soon {
+  color: #ffab70;
+  background: rgba(255, 171, 112, 0.1);
+}
+
+/* Workshops */
+.workshops-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.workshop-card {
+  background: #141414;
+  border: 1px solid #1a1a1a;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  transition: border-color 0.3s;
+}
+
+.workshop-card:hover {
+  border-color: #333;
+}
+
+.workshop-accent {
+  width: 4px;
+  flex-shrink: 0;
+}
+
+.workshop-body {
+  padding: 1.5rem 1.8rem;
+  flex: 1;
+}
+
+.workshop-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.workshop-desc {
+  font-size: 0.85rem;
+  color: #6e6e73;
+  line-height: 1.6;
+  font-weight: 300;
+  margin-bottom: 0.8rem;
+}
+
+.workshop-topics {
+  list-style: none;
+  margin-bottom: 1rem;
+}
+
+.workshop-topics li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.3rem 0;
+  font-size: 0.82rem;
+  color: #86868b;
+  font-weight: 400;
+}
+
+.workshop-topic-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.workshop-enroll {
+  margin-top: 0.5rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid #1a1a1a;
+}
+
+.workshop-enroll-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: #6e6e73;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Corporate Block */
+.corporate-block {
+  margin-top: 3rem;
+  background: linear-gradient(135deg, rgba(200, 162, 255, 0.06) 0%, rgba(120, 220, 232, 0.04) 100%);
+  border: 1px solid #2a2240;
+  border-radius: 16px;
+  padding: 2.5rem;
+}
+
+.corporate-badge {
+  display: inline-block;
+  padding: 0.3rem 0.9rem;
+  border-radius: 100px;
+  background: rgba(200, 162, 255, 0.15);
+  color: #c8a2ff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.corporate-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.6rem;
+}
+
+.corporate-desc {
+  font-size: 0.95rem;
+  color: #86868b;
+  line-height: 1.7;
+  font-weight: 300;
+  max-width: 600px;
+  margin-bottom: 1.5rem;
+}
+
+.corporate-price {
+  margin-bottom: 1.5rem;
+}
+
+.corporate-price-amount {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #c8a2ff;
+  letter-spacing: -0.02em;
+}
+
+.corporate-price-detail {
+  display: block;
+  font-size: 0.82rem;
+  color: #6e6e73;
+  margin-top: 0.3rem;
+  font-weight: 400;
+}
+
+.corporate-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.corporate-pay {
+  padding: 0.6rem 1.2rem;
+  font-size: 0.85rem;
+}
+
+.corporate-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #86868b;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.corporate-contact:hover {
+  color: #c8a2ff;
+}
+
 /* ─── Feature Dot (research cards) ─── */
 .feature-dot {
   width: 8px;
@@ -854,7 +1416,19 @@ body {
   }
 
   .curriculum-grid,
-  .lectures-grid {
+  .lectures-grid,
+  .courses-grid,
+  .seminar-speakers-grid,
+  .workshops-grid,
+  .batches-grid {
     grid-template-columns: 1fr;
+  }
+
+  .training-info-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .speaker-talk {
+    white-space: normal;
   }
 }
