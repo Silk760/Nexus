@@ -52,10 +52,15 @@ export default function Training() {
       .from('batches')
       .select('*')
       .eq('active', true)
-      .order('start_date', { ascending: true })
       .then(({ data, error }) => {
         if (error) console.error('Failed to load batches:', error)
-        else setBatches(data || [])
+        else {
+          // Sort by parsed date since start_date is text
+          const sorted = (data || []).sort(
+            (a, b) => new Date(a.start_date) - new Date(b.start_date)
+          )
+          setBatches(sorted)
+        }
         setLoading(false)
       })
 
