@@ -18,7 +18,7 @@ export default function Layout({ children }) {
     <>
       <nav className="nav">
         <Link className="nav-logo" to="/">
-          <img src={import.meta.env.BASE_URL + 'logo.png'} alt="NEXUS" className="nav-logo-img" />
+          <img src="/logo.png" alt="NEXUS" className="nav-logo-img" />
           <div className="nav-logo-text">
             <span className="nav-logo-name">NEXUS</span>
             <span className="nav-logo-sub">Applied Intelligence Institute</span>

@@ -1,6 +1,10 @@
+import { useState } from 'react'
+import { checkout } from '../lib/checkout'
+
 const COURSES = [
   {
     title: 'Introduction to ML Systems',
+    slug: 'intro-ml-systems',
     time: 'Mon & Wed, 10:00 AM – 11:30 AM',
     access: 'Open',
     link: '#',
@@ -8,6 +12,7 @@ const COURSES = [
   },
   {
     title: 'Deep Learning & DNN Architectures',
+    slug: 'deep-learning-dnn',
     time: 'Tue & Thu, 1:00 PM – 2:30 PM',
     access: 'Open',
     link: '#',
@@ -15,24 +20,27 @@ const COURSES = [
   },
   {
     title: 'AI Accelerator Design',
+    slug: 'ai-accelerator-design',
     time: 'Wed & Fri, 9:00 AM – 10:30 AM',
     access: 'Paid',
     price: '$199',
-    stripe: '#',   // Replace with your Stripe Payment Link
-    salla: '#',    // Replace with your Salla product link
+    stripePriceId: '',   // Set from Stripe dashboard
+    salla: '#',
     color: '#78dce8',
   },
   {
     title: 'Edge Computing & TinyML',
+    slug: 'edge-computing-tinyml',
     time: 'Mon & Wed, 2:00 PM – 3:30 PM',
     access: 'Paid',
     price: '$179',
-    stripe: '#',
+    stripePriceId: '',
     salla: '#',
     color: '#78dce8',
   },
   {
     title: 'Model Compression & Quantization',
+    slug: 'model-compression-quantization',
     time: 'Tue & Thu, 10:00 AM – 11:30 AM',
     access: 'Open',
     link: '#',
@@ -40,15 +48,17 @@ const COURSES = [
   },
   {
     title: 'Efficient Neural Architecture Search',
+    slug: 'efficient-nas',
     time: 'Fri, 1:00 PM – 4:00 PM',
     access: 'Paid',
     price: '$149',
-    stripe: '#',
+    stripePriceId: '',
     salla: '#',
     color: '#a9dc76',
   },
   {
     title: 'MLOps & Scalable Infrastructure',
+    slug: 'mlops-scalable-infra',
     time: 'Mon & Wed, 4:00 PM – 5:30 PM',
     access: 'Open',
     link: '#',
@@ -56,6 +66,7 @@ const COURSES = [
   },
   {
     title: 'Responsible AI & Ethics',
+    slug: 'responsible-ai-ethics',
     time: 'Thu, 10:00 AM – 12:00 PM',
     access: 'Open',
     link: '#',
@@ -63,15 +74,17 @@ const COURSES = [
   },
   {
     title: 'HW/SW Co-Design for AI',
+    slug: 'hwsw-codesign',
     time: 'Tue & Thu, 3:00 PM – 4:30 PM',
     access: 'Paid',
     price: '$219',
-    stripe: '#',
+    stripePriceId: '',
     salla: '#',
     color: '#c8a2ff',
   },
   {
     title: 'On-Device Inference & Deployment',
+    slug: 'on-device-inference',
     time: 'Wed, 2:00 PM – 5:00 PM',
     access: 'Open',
     link: '#',
@@ -79,15 +92,17 @@ const COURSES = [
   },
   {
     title: 'Neuromorphic Computing Systems',
+    slug: 'neuromorphic-computing',
     time: 'Mon & Fri, 11:00 AM – 12:30 PM',
     access: 'Paid',
     price: '$199',
-    stripe: '#',
+    stripePriceId: '',
     salla: '#',
     color: '#78dce8',
   },
   {
     title: 'Industrial AI Applications',
+    slug: 'industrial-ai-apps',
     time: 'Tue & Thu, 9:00 AM – 10:30 AM',
     access: 'Open',
     link: '#',
@@ -96,6 +111,24 @@ const COURSES = [
 ]
 
 export default function Courses() {
+  const [checkingOut, setCheckingOut] = useState(null)
+
+  async function handleStripeCheckout(course) {
+    if (!course.stripePriceId) {
+      alert('Stripe payment is not yet configured for this course.')
+      return
+    }
+    setCheckingOut(course.slug)
+    try {
+      await checkout('course', course.slug, course.stripePriceId)
+    } catch (err) {
+      console.error(err)
+      alert('Could not start checkout. Please try again.')
+    } finally {
+      setCheckingOut(null)
+    }
+  }
+
   return (
     <section className="section section-wide page-section visible">
       <div className="section-number">03 &mdash; Courses</div>
@@ -137,12 +170,16 @@ export default function Courses() {
                 <div className="course-actions">
                   <span className="course-pay-label">Enroll via</span>
                   <div className="course-pay-buttons">
-                    <a className="pay-btn pay-btn--stripe" href={course.stripe} target="_blank" rel="noopener noreferrer">
+                    <button
+                      className="pay-btn pay-btn--stripe"
+                      disabled={checkingOut === course.slug}
+                      onClick={() => handleStripeCheckout(course)}
+                    >
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z" />
                       </svg>
-                      Stripe
-                    </a>
+                      {checkingOut === course.slug ? 'Redirecting…' : 'Stripe'}
+                    </button>
                     <a className="pay-btn pay-btn--salla" href={course.salla} target="_blank" rel="noopener noreferrer">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8h16v10zm-8-3c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3z" />

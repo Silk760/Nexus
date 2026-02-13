@@ -1094,52 +1094,118 @@ body {
 }
 
 /* Batches */
-.batches-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+.batches-list {
+  display: flex;
+  flex-direction: column;
   gap: 0.8rem;
 }
 
-.batch-card {
+.batch-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 1.3rem;
+  gap: 1.5rem;
+  padding: 1.2rem 1.5rem;
   background: #141414;
   border: 1px solid #1a1a1a;
-  border-radius: 10px;
+  border-radius: 12px;
   transition: border-color 0.3s;
 }
 
-.batch-card:hover {
+.batch-row:hover {
   border-color: #333;
+}
+
+.batch-row--full {
+  opacity: 0.55;
+}
+
+.batch-left {
+  flex: 1;
+  min-width: 0;
 }
 
 .batch-dates {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.85rem;
-  color: #b0b0b0;
-  font-weight: 500;
+  font-size: 0.88rem;
+  color: #d0d0d0;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
 }
 
-.batch-status {
-  font-size: 0.7rem;
+.batch-seats-info {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.batch-seats-bar {
+  width: 120px;
+  height: 6px;
+  background: #222;
+  border-radius: 3px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.batch-seats-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: #c8a2ff;
+  transition: width 0.4s ease;
+}
+
+.batch-seats-fill--full {
+  background: #ff5f57;
+}
+
+.batch-seats-text {
+  font-size: 0.78rem;
+  color: #6e6e73;
+  font-weight: 400;
+}
+
+.batch-seats-text strong {
+  color: #b0b0b0;
+}
+
+.batch-remaining {
+  color: #a9dc76;
   font-weight: 600;
-  padding: 0.2rem 0.6rem;
+}
+
+.batch-full-label {
+  color: #ff5f57;
+  font-weight: 600;
+}
+
+.batch-right {
+  flex-shrink: 0;
+}
+
+.batch-pay-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.batch-price-tag {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #c8a2ff;
+  white-space: nowrap;
+}
+
+.batch-sold-out {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #ff5f57;
+  background: rgba(255, 95, 87, 0.1);
+  padding: 0.3rem 0.8rem;
   border-radius: 6px;
   letter-spacing: 0.03em;
-}
-
-.batch-status--open {
-  color: #a9dc76;
-  background: rgba(169, 220, 118, 0.1);
-}
-
-.batch-status--soon {
-  color: #ffab70;
-  background: rgba(255, 171, 112, 0.1);
 }
 
 /* Workshops */
@@ -1419,9 +1485,25 @@ body {
   .lectures-grid,
   .courses-grid,
   .seminar-speakers-grid,
-  .workshops-grid,
-  .batches-grid {
+  .workshops-grid {
     grid-template-columns: 1fr;
+  }
+
+  .batch-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .batch-seats-bar {
+    width: 100%;
+  }
+
+  .batch-seats-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+    width: 100%;
   }
 
   .training-info-row {
