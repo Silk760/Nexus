@@ -23,9 +23,8 @@ const COURSES = [
     slug: 'ai-accelerator-design',
     time: 'Wed & Fri, 9:00 AM – 10:30 AM',
     access: 'Paid',
-    price: '$199',
-    stripePriceId: '',   // Set from Stripe dashboard
-
+    price: '750 SAR',
+    priceSar: 750,
     color: '#78dce8',
   },
   {
@@ -33,9 +32,8 @@ const COURSES = [
     slug: 'edge-computing-tinyml',
     time: 'Mon & Wed, 2:00 PM – 3:30 PM',
     access: 'Paid',
-    price: '$179',
-    stripePriceId: '',
-
+    price: '675 SAR',
+    priceSar: 675,
     color: '#78dce8',
   },
   {
@@ -51,9 +49,8 @@ const COURSES = [
     slug: 'efficient-nas',
     time: 'Fri, 1:00 PM – 4:00 PM',
     access: 'Paid',
-    price: '$149',
-    stripePriceId: '',
-
+    price: '560 SAR',
+    priceSar: 560,
     color: '#a9dc76',
   },
   {
@@ -77,9 +74,8 @@ const COURSES = [
     slug: 'hwsw-codesign',
     time: 'Tue & Thu, 3:00 PM – 4:30 PM',
     access: 'Paid',
-    price: '$219',
-    stripePriceId: '',
-
+    price: '820 SAR',
+    priceSar: 820,
     color: '#c8a2ff',
   },
   {
@@ -95,9 +91,8 @@ const COURSES = [
     slug: 'neuromorphic-computing',
     time: 'Mon & Fri, 11:00 AM – 12:30 PM',
     access: 'Paid',
-    price: '$199',
-    stripePriceId: '',
-
+    price: '750 SAR',
+    priceSar: 750,
     color: '#78dce8',
   },
   {
@@ -113,14 +108,14 @@ const COURSES = [
 export default function Courses() {
   const [checkingOut, setCheckingOut] = useState(null)
 
-  async function handleStripeCheckout(course) {
-    if (!course.stripePriceId) {
-      alert('Stripe payment is not yet configured for this course.')
+  async function handlePayCheckout(course) {
+    if (!course.priceSar) {
+      alert('Payment is not yet configured for this course.')
       return
     }
     setCheckingOut(course.slug)
     try {
-      await checkout('course', course.slug, course.stripePriceId)
+      await checkout('course', course.slug, course.priceSar)
     } catch (err) {
       console.error(err)
       alert('Could not start checkout. Please try again.')
@@ -171,14 +166,14 @@ export default function Courses() {
                   <span className="course-pay-label">Enroll via</span>
                   <div className="course-pay-buttons">
                     <button
-                      className="pay-btn pay-btn--stripe"
+                      className="pay-btn pay-btn--tap"
                       disabled={checkingOut === course.slug}
-                      onClick={() => handleStripeCheckout(course)}
+                      onClick={() => handlePayCheckout(course)}
                     >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z" />
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="1" y="4" width="22" height="16" rx="2" /><line x1="1" y1="10" x2="23" y2="10" />
                       </svg>
-                      {checkingOut === course.slug ? 'Redirecting…' : 'Stripe'}
+                      {checkingOut === course.slug ? 'Redirecting…' : 'Pay Now'}
                     </button>
                     <a className="pay-btn pay-btn--tabby" href="#" target="_blank" rel="noopener noreferrer">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -202,8 +197,8 @@ export default function Courses() {
 
       <div className="section-callout" style={{ marginTop: '2.5rem' }}>
         Open courses are freely available to anyone worldwide. Paid courses include live instruction,
-        mentorship, project reviews, and certification. Pay securely via Stripe, Tabby, or
-        Tamara. All course materials are designed with real-world application in mind.
+        mentorship, project reviews, and certification. Pay securely via Tap Payments (Mada, Apple Pay, cards),
+        Tabby, or Tamara. All course materials are designed with real-world application in mind.
       </div>
     </section>
   )

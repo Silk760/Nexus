@@ -1041,13 +1041,13 @@ body {
   transform: translateY(-1px);
 }
 
-.pay-btn--stripe {
-  background: rgba(99, 91, 255, 0.12);
-  color: #7b73ff;
+.pay-btn--tap {
+  background: rgba(46, 124, 255, 0.12);
+  color: #5b9bf5;
 }
 
-.pay-btn--stripe:hover {
-  background: rgba(99, 91, 255, 0.22);
+.pay-btn--tap:hover {
+  background: rgba(46, 124, 255, 0.22);
 }
 
 .pay-btn--tabby {

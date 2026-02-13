@@ -83,11 +83,11 @@ export default function Training() {
     }
   }, [])
 
-  async function handleStripeCheckout(batch) {
+  async function handlePayCheckout(batch) {
     if (batch.registered >= batch.total_seats) return
     setCheckingOut(batch.id)
     try {
-      await checkout('batch', batch.id, batch.stripe_price_id)
+      await checkout('batch', batch.id, batch.price_sar)
     } catch (err) {
       console.error(err)
       alert('Could not start checkout. Please try again.')
@@ -165,14 +165,14 @@ export default function Training() {
                 ) : (
                   <div className="batch-pay-buttons">
                     <button
-                      className="pay-btn pay-btn--stripe"
+                      className="pay-btn pay-btn--tap"
                       disabled={checkingOut === batch.id}
-                      onClick={() => handleStripeCheckout(batch)}
+                      onClick={() => handlePayCheckout(batch)}
                     >
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z" />
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="1" y="4" width="22" height="16" rx="2" /><line x1="1" y1="10" x2="23" y2="10" />
                       </svg>
-                      {checkingOut === batch.id ? 'Redirecting…' : 'Stripe'}
+                      {checkingOut === batch.id ? 'Redirecting…' : 'Pay Now'}
                     </button>
                     <a className="pay-btn pay-btn--tabby" href="#" target="_blank" rel="noopener noreferrer">
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
@@ -231,11 +231,11 @@ export default function Training() {
             <span className="corporate-price-detail">full batch &middot; 20 seats &middot; 20–25 hours &middot; 1 week</span>
           </div>
           <div className="corporate-actions">
-            <a className="pay-btn pay-btn--stripe corporate-pay" href="#" target="_blank" rel="noopener noreferrer">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z" />
+            <a className="pay-btn pay-btn--tap corporate-pay" href="#" target="_blank" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="1" y="4" width="22" height="16" rx="2" /><line x1="1" y1="10" x2="23" y2="10" />
               </svg>
-              Pay via Stripe
+              Pay Now
             </a>
             <a className="pay-btn pay-btn--tabby corporate-pay" href="#" target="_blank" rel="noopener noreferrer">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
