@@ -1,110 +1,114 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import './App.css'
 
-/* ─── Animated Nexus SVG ─── */
-function NexusSVG() {
+/* ─── Animated Circuit Network Canvas ─── */
+function CircuitCanvas() {
   const canvasRef = useRef(null)
   const animRef = useRef(null)
 
   useEffect(() => {
     const canvas = canvasRef.current
     const ctx = canvas.getContext('2d')
-    const W = 360, H = 320
+    const W = 400, H = 360
     canvas.width = W * 2
     canvas.height = H * 2
     ctx.scale(2, 2)
 
+    // chip-inspired nodes
     const nodes = [
-      { x: 180, y: 160, r: 18, color: '#c8a2ff', label: 'N' },
-      { x: 80,  y: 80,  r: 12, color: '#ff7eb6', label: '' },
-      { x: 280, y: 80,  r: 12, color: '#78dce8', label: '' },
-      { x: 60,  y: 220, r: 10, color: '#a9dc76', label: '' },
-      { x: 300, y: 220, r: 10, color: '#ffab70', label: '' },
-      { x: 140, y: 40,  r: 8,  color: '#c8a2ff', label: '' },
-      { x: 240, y: 40,  r: 8,  color: '#ff7eb6', label: '' },
-      { x: 40,  y: 150, r: 7,  color: '#78dce8', label: '' },
-      { x: 320, y: 150, r: 7,  color: '#a9dc76', label: '' },
-      { x: 130, y: 260, r: 8,  color: '#ffab70', label: '' },
-      { x: 250, y: 270, r: 8,  color: '#c8a2ff', label: '' },
-      { x: 180, y: 290, r: 6,  color: '#78dce8', label: '' },
+      { x: 200, y: 180, r: 22, color: '#c8a2ff', type: 'core' },
+      { x: 80,  y: 70,  r: 10, color: '#78dce8', type: 'node' },
+      { x: 320, y: 70,  r: 10, color: '#78dce8', type: 'node' },
+      { x: 50,  y: 180, r: 8,  color: '#a9dc76', type: 'node' },
+      { x: 350, y: 180, r: 8,  color: '#a9dc76', type: 'node' },
+      { x: 80,  y: 290, r: 10, color: '#ffab70', type: 'node' },
+      { x: 320, y: 290, r: 10, color: '#ffab70', type: 'node' },
+      { x: 140, y: 100, r: 7,  color: '#ff7eb6', type: 'node' },
+      { x: 260, y: 100, r: 7,  color: '#ff7eb6', type: 'node' },
+      { x: 140, y: 260, r: 7,  color: '#c8a2ff', type: 'node' },
+      { x: 260, y: 260, r: 7,  color: '#c8a2ff', type: 'node' },
+      { x: 200, y: 50,  r: 6,  color: '#78dce8', type: 'node' },
+      { x: 200, y: 310, r: 6,  color: '#ffab70', type: 'node' },
+      { x: 130, y: 180, r: 6,  color: '#a9dc76', type: 'node' },
+      { x: 270, y: 180, r: 6,  color: '#a9dc76', type: 'node' },
     ]
 
     const edges = [
-      [0,1],[0,2],[0,3],[0,4],
-      [1,5],[1,7],[2,6],[2,8],
-      [3,9],[4,10],[0,5],[0,6],
-      [0,9],[0,10],[9,11],[10,11],
-      [1,2],[3,4],[7,3],[8,4],
+      [0,1],[0,2],[0,3],[0,4],[0,5],[0,6],
+      [0,7],[0,8],[0,9],[0,10],[0,11],[0,12],[0,13],[0,14],
+      [1,7],[7,11],[11,8],[8,2],
+      [3,13],[13,14],[14,4],
+      [5,9],[9,12],[12,10],[10,6],
+      [1,3],[2,4],[5,3],[6,4],
     ]
 
     let t = 0
 
     function draw() {
       ctx.clearRect(0, 0, W, H)
-      t += 0.008
+      t += 0.006
 
-      // floating offsets
       const offsets = nodes.map((_, i) => ({
-        dx: Math.sin(t * 1.2 + i * 1.1) * 6,
-        dy: Math.cos(t * 0.9 + i * 0.8) * 6,
+        dx: Math.sin(t * 1.1 + i * 0.9) * 4,
+        dy: Math.cos(t * 0.8 + i * 0.7) * 4,
       }))
 
-      // draw edges
+      // edges with data pulses
       edges.forEach(([a, b]) => {
         const ax = nodes[a].x + offsets[a].dx
         const ay = nodes[a].y + offsets[a].dy
         const bx = nodes[b].x + offsets[b].dx
         const by = nodes[b].y + offsets[b].dy
+        const pulse = (Math.sin(t * 2.5 + a + b) + 1) / 2
 
-        const pulse = (Math.sin(t * 3 + a + b) + 1) / 2
         ctx.beginPath()
         ctx.moveTo(ax, ay)
         ctx.lineTo(bx, by)
-        ctx.strokeStyle = `rgba(200, 162, 255, ${0.08 + pulse * 0.12})`
-        ctx.lineWidth = 1
+        ctx.strokeStyle = `rgba(200, 162, 255, ${0.06 + pulse * 0.1})`
+        ctx.lineWidth = 0.8
         ctx.stroke()
 
-        // traveling particle
-        const pt = (t * 0.5 + a * 0.15 + b * 0.1) % 1
+        // traveling data particle
+        const pt = (t * 0.4 + a * 0.12 + b * 0.08) % 1
         const px = ax + (bx - ax) * pt
         const py = ay + (by - ay) * pt
         ctx.beginPath()
         ctx.arc(px, py, 1.5, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(200, 162, 255, ${0.3 + pulse * 0.4})`
+        ctx.fillStyle = `rgba(200, 162, 255, ${0.2 + pulse * 0.5})`
         ctx.fill()
       })
 
-      // draw nodes
+      // nodes
       nodes.forEach((node, i) => {
         const nx = node.x + offsets[i].dx
         const ny = node.y + offsets[i].dy
-        const pulse = (Math.sin(t * 2 + i) + 1) / 2
+        const pulse = (Math.sin(t * 1.8 + i) + 1) / 2
 
         // glow
         const grd = ctx.createRadialGradient(nx, ny, 0, nx, ny, node.r * 3)
-        grd.addColorStop(0, node.color + '20')
+        grd.addColorStop(0, node.color + '15')
         grd.addColorStop(1, 'transparent')
         ctx.beginPath()
         ctx.arc(nx, ny, node.r * 3, 0, Math.PI * 2)
         ctx.fillStyle = grd
         ctx.fill()
 
-        // circle
+        // body
         ctx.beginPath()
-        ctx.arc(nx, ny, node.r + pulse * 2, 0, Math.PI * 2)
-        ctx.fillStyle = '#141414'
+        ctx.arc(nx, ny, node.r + pulse * 1.5, 0, Math.PI * 2)
+        ctx.fillStyle = '#0f0f0f'
         ctx.fill()
-        ctx.strokeStyle = node.color + 'aa'
-        ctx.lineWidth = 1.5
+        ctx.strokeStyle = node.color + '88'
+        ctx.lineWidth = 1.2
         ctx.stroke()
 
-        // label
-        if (node.label) {
-          ctx.fillStyle = '#fff'
-          ctx.font = '700 14px Figtree, sans-serif'
+        // core label
+        if (node.type === 'core') {
+          ctx.fillStyle = '#c8a2ff'
+          ctx.font = '700 16px Figtree, sans-serif'
           ctx.textAlign = 'center'
           ctx.textBaseline = 'middle'
-          ctx.fillText(node.label, nx, ny)
+          ctx.fillText('N', nx, ny)
         }
       })
 
@@ -115,38 +119,27 @@ function NexusSVG() {
     return () => cancelAnimationFrame(animRef.current)
   }, [])
 
-  return (
-    <canvas
-      ref={canvasRef}
-      style={{ width: 360, height: 320 }}
-    />
-  )
+  return <canvas ref={canvasRef} style={{ width: 400, height: 360 }} />
 }
 
 /* ─── Scroll Reveal Hook ─── */
 function useScrollReveal() {
   const ref = useRef(null)
-
   useEffect(() => {
     const el = ref.current
     if (!el) return
     const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add('visible')
-        }
-      },
-      { threshold: 0.15 }
+      ([entry]) => { if (entry.isIntersecting) el.classList.add('visible') },
+      { threshold: 0.12 }
     )
     obs.observe(el)
     return () => obs.disconnect()
   }, [])
-
   return ref
 }
 
 /* ─── Navigation ─── */
-const NAV_ITEMS = ['About', 'Features', 'How It Works', 'Metrics', 'Get Started']
+const NAV_ITEMS = ['About', 'Research', 'Pillars', 'Community', 'Connect']
 
 function Navigation({ activeSection }) {
   const scrollTo = useCallback((id) => {
@@ -156,19 +149,15 @@ function Navigation({ activeSection }) {
   return (
     <nav className="nav">
       <a className="nav-logo" href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}>
-        <svg viewBox="0 0 28 28" fill="none">
-          <circle cx="14" cy="14" r="12" stroke="#c8a2ff" strokeWidth="1.5" fill="none" />
-          <circle cx="14" cy="14" r="4" fill="#c8a2ff" />
-          <line x1="14" y1="2" x2="14" y2="10" stroke="#c8a2ff" strokeWidth="1.2" />
-          <line x1="14" y1="18" x2="14" y2="26" stroke="#c8a2ff" strokeWidth="1.2" />
-          <line x1="2" y1="14" x2="10" y2="14" stroke="#c8a2ff" strokeWidth="1.2" />
-          <line x1="18" y1="14" x2="26" y2="14" stroke="#c8a2ff" strokeWidth="1.2" />
-        </svg>
-        Nexus
+        <img src={import.meta.env.BASE_URL + 'logo.png'} alt="NEXUS" className="nav-logo-img" />
+        <div className="nav-logo-text">
+          <span className="nav-logo-name">NEXUS</span>
+          <span className="nav-logo-sub">Applied Intelligence Institute</span>
+        </div>
       </a>
       <div className="nav-links">
         {NAV_ITEMS.map((item) => {
-          const id = item.toLowerCase().replace(/\s+/g, '-')
+          const id = item.toLowerCase()
           return (
             <button
               key={id}
@@ -188,15 +177,12 @@ function Navigation({ activeSection }) {
 export default function App() {
   const [activeSection, setActiveSection] = useState('')
 
-  // track which section is in view
   useEffect(() => {
-    const ids = NAV_ITEMS.map((s) => s.toLowerCase().replace(/\s+/g, '-'))
+    const ids = NAV_ITEMS.map((s) => s.toLowerCase())
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id)
-          }
+          if (entry.isIntersecting) setActiveSection(entry.target.id)
         })
       },
       { threshold: 0.3 }
@@ -209,10 +195,10 @@ export default function App() {
   }, [])
 
   const aboutRef = useScrollReveal()
-  const featuresRef = useScrollReveal()
-  const howRef = useScrollReveal()
-  const metricsRef = useScrollReveal()
-  const ctaRef = useScrollReveal()
+  const researchRef = useScrollReveal()
+  const pillarsRef = useScrollReveal()
+  const communityRef = useScrollReveal()
+  const connectRef = useScrollReveal()
 
   return (
     <>
@@ -222,29 +208,32 @@ export default function App() {
       <section className="hero">
         <div className="hero-content">
           <div className="hero-text">
-            <span className="hero-label">Open Platform</span>
-            <h1 className="hero-title">Welcome to Nexus</h1>
+            <span className="hero-label">Research Institute</span>
+            <h1 className="hero-title">
+              NEXUS<br />
+              <span className="hero-title-light">Applied Intelligence Institute</span>
+            </h1>
             <p className="hero-subtitle">
-              A connected hub for building, sharing, and scaling ideas.
-              From concept to production — everything flows through Nexus.
+              Advancing the frontiers of artificial intelligence through the integration
+              of algorithms, silicon systems, and real-world deployment.
             </p>
             <div className="stats-row">
               <div className="stat-card">
-                <div className="stat-value">10x</div>
-                <div className="stat-label">Faster Builds</div>
+                <div className="stat-value">AI</div>
+                <div className="stat-label">Accelerators</div>
               </div>
               <div className="stat-card">
-                <div className="stat-value">99.9%</div>
-                <div className="stat-label">Uptime</div>
+                <div className="stat-value">Edge</div>
+                <div className="stat-label">Intelligence</div>
               </div>
               <div className="stat-card">
-                <div className="stat-value">Open</div>
-                <div className="stat-label">Source</div>
+                <div className="stat-value">HW/SW</div>
+                <div className="stat-label">Co-Design</div>
               </div>
             </div>
           </div>
           <div className="hero-svg-wrap">
-            <NexusSVG />
+            <CircuitCanvas />
           </div>
         </div>
       </section>
@@ -252,79 +241,63 @@ export default function App() {
       {/* ─── 01 About ─── */}
       <section id="about" className="section" ref={aboutRef}>
         <div className="section-number">01 &mdash; About</div>
-        <h2 className="section-title">What is Nexus?</h2>
-        <p className="section-subtitle">The infrastructure layer for modern teams</p>
+        <h2 className="section-title">Our Mission</h2>
+        <p className="section-subtitle">Where deep technical thinking meets real-world impact</p>
         <p className="section-body">
-          Nexus is a modular platform designed to connect workflows, services, and people
-          into a single cohesive system. Whether you&apos;re orchestrating microservices,
-          managing data pipelines, or collaborating across distributed teams &mdash;
-          Nexus provides the backbone that ties it all together.
+          NEXUS Applied Intelligence Institute is a research-driven initiative dedicated to advancing the
+          frontiers of artificial intelligence through the integration of algorithms, silicon systems, and
+          real-world deployment. The institute serves as a convergence point for researchers, engineers, and
+          innovators working at the intersection of AI accelerators, edge intelligence, efficient neural
+          networks, and hardware&ndash;software co-design.
         </p>
         <div className="section-callout">
-          Built from the ground up for speed, flexibility, and developer experience.
-          Zero lock-in. Full control. Your rules.
-        </div>
-
-        {/* Code block */}
-        <div className="code-block">
-          <div className="code-header">
-            <span className="code-dot red" />
-            <span className="code-dot yellow" />
-            <span className="code-dot green" />
-            <span className="code-filename">nexus.config.js</span>
-          </div>
-          <div className="code-body">
-            <pre>
-              <span className="kw">export default</span>{` {\n`}
-              {'  '}<span className="hl">name</span>{`: `}<span className="st">'my-project'</span>{`,\n`}
-              {'  '}<span className="hl">modules</span>{`: [`}<span className="st">'auth'</span>{`, `}<span className="st">'data'</span>{`, `}<span className="st">'api'</span>{`],\n`}
-              {'  '}<span className="hl">deploy</span>{`: {\n`}
-              {'    '}<span className="fn">target</span>{`: `}<span className="st">'edge'</span>{`,\n`}
-              {'    '}<span className="fn">regions</span>{`: [`}<span className="st">'us-east'</span>{`, `}<span className="st">'eu-west'</span>{`],\n`}
-              {'  }'}{`,\n`}
-              {'  '}<span className="cm">{'// Zero-config. Just works.'}</span>{`\n`}
-              {'}'}
-            </pre>
-          </div>
+          Our mission is to foster a respected environment where deep technical thinking, scientific rigor,
+          and meaningful collaboration can thrive. NEXUS aims to bridge the gap between theory and practice
+          by supporting research that moves beyond simulation into applied systems capable of operating in
+          real-world conditions.
         </div>
       </section>
 
-      {/* ─── 02 Features ─── */}
-      <section id="features" className="section" ref={featuresRef}>
-        <div className="section-number">02 &mdash; Features</div>
-        <h2 className="section-title">Core Capabilities</h2>
-        <p className="section-subtitle">Everything you need, nothing you don&apos;t</p>
+      {/* ─── 02 Research Focus ─── */}
+      <section id="research" className="section" ref={researchRef}>
+        <div className="section-number">02 &mdash; Research Focus</div>
+        <h2 className="section-title">Domains of Impact</h2>
+        <p className="section-subtitle">Spanning the full stack from algorithms to silicon</p>
 
         <div className="feature-grid">
           <div className="feature-card">
             <div className="feature-icon" style={{ background: 'rgba(200, 162, 255, 0.1)' }}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c8a2ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                <rect x="4" y="4" width="16" height="16" rx="2" />
+                <rect x="9" y="9" width="6" height="6" />
+                <line x1="9" y1="1" x2="9" y2="4" /><line x1="15" y1="1" x2="15" y2="4" />
+                <line x1="9" y1="20" x2="9" y2="23" /><line x1="15" y1="20" x2="15" y2="23" />
+                <line x1="20" y1="9" x2="23" y2="9" /><line x1="20" y1="15" x2="23" y2="15" />
+                <line x1="1" y1="9" x2="4" y2="9" /><line x1="1" y1="15" x2="4" y2="15" />
               </svg>
             </div>
-            <h3>Lightning Fast</h3>
-            <p>Sub-millisecond routing with an optimized runtime. Built for speed at any scale.</p>
+            <h3>AI Accelerators</h3>
+            <p>Designing next-generation chip architectures optimized for deep learning inference and training workloads.</p>
           </div>
           <div className="feature-card">
             <div className="feature-icon" style={{ background: 'rgba(120, 220, 232, 0.1)' }}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#78dce8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="2" y="2" width="20" height="8" rx="2" />
-                <rect x="2" y="14" width="20" height="8" rx="2" />
-                <line x1="6" y1="6" x2="6.01" y2="6" />
-                <line x1="6" y1="18" x2="6.01" y2="18" />
+                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                <path d="M2 17l10 5 10-5" />
+                <path d="M2 12l10 5 10-5" />
               </svg>
             </div>
-            <h3>Edge-Native</h3>
-            <p>Deploy globally with automatic edge routing. Data stays close to your users.</p>
+            <h3>Edge Intelligence</h3>
+            <p>Deploying efficient AI models on resource-constrained devices for real-time decision making at the edge.</p>
           </div>
           <div className="feature-card">
             <div className="feature-icon" style={{ background: 'rgba(169, 220, 118, 0.1)' }}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#a9dc76" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                <path d="M18 20V10" /><path d="M12 20V4" /><path d="M6 20v-6" />
               </svg>
             </div>
-            <h3>Secure by Default</h3>
-            <p>End-to-end encryption, zero-trust networking, and automatic secret rotation.</p>
+            <h3>TinyML</h3>
+            <p>Pushing the boundaries of machine learning on microcontrollers and ultra-low-power embedded systems.</p>
           </div>
           <div className="feature-card">
             <div className="feature-icon" style={{ background: 'rgba(255, 126, 182, 0.1)' }}>
@@ -333,8 +306,8 @@ export default function App() {
                 <polyline points="8 6 2 12 8 18" />
               </svg>
             </div>
-            <h3>Developer First</h3>
-            <p>Intuitive APIs, rich CLI tooling, and documentation that actually helps.</p>
+            <h3>HW/SW Co-Design</h3>
+            <p>Joint optimization of hardware architectures and software stacks for maximum efficiency and performance.</p>
           </div>
           <div className="feature-card">
             <div className="feature-icon" style={{ background: 'rgba(255, 171, 112, 0.1)' }}>
@@ -343,143 +316,167 @@ export default function App() {
                 <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
               </svg>
             </div>
-            <h3>Fully Configurable</h3>
-            <p>Plugin architecture with hot-reloading. Customize every layer of the stack.</p>
+            <h3>Scalable AI Infrastructure</h3>
+            <p>Building robust, distributed systems that bring AI from the lab to production at scale.</p>
           </div>
           <div className="feature-card">
             <div className="feature-icon" style={{ background: 'rgba(200, 162, 255, 0.1)' }}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c8a2ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
               </svg>
             </div>
-            <h3>Team Ready</h3>
-            <p>Role-based access, audit logs, and real-time collaboration built in.</p>
+            <h3>Industrial AI Applications</h3>
+            <p>Translating research into deployable solutions for manufacturing, healthcare, energy, and beyond.</p>
           </div>
         </div>
       </section>
 
-      {/* ─── 03 How It Works ─── */}
-      <section id="how-it-works" className="section" ref={howRef}>
-        <div className="section-number">03 &mdash; How It Works</div>
-        <h2 className="section-title">Simple by Design</h2>
-        <p className="section-subtitle">Three steps from zero to deployed</p>
+      {/* ─── 03 Pillars ─── */}
+      <section id="pillars" className="section" ref={pillarsRef}>
+        <div className="section-number">03 &mdash; Core Pillars</div>
+        <h2 className="section-title">Three Pillars of NEXUS</h2>
+        <p className="section-subtitle">The convergence of algorithms, silicon, and deployment</p>
 
         <div className="steps">
           <div className="step">
-            <div className="step-number">1</div>
+            <div className="step-number" style={{ background: 'rgba(200, 162, 255, 0.12)', color: '#c8a2ff' }}>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" />
+              </svg>
+            </div>
             <div>
-              <h3>Initialize</h3>
+              <h3>Algorithms</h3>
               <p>
-                Run a single command to scaffold your project. Nexus detects your stack
-                and configures everything automatically &mdash; frameworks, databases, and services.
+                Efficient neural network architectures, model compression, quantization, pruning,
+                and neural architecture search. Developing algorithms that maintain accuracy while
+                dramatically reducing computational requirements.
               </p>
             </div>
           </div>
           <div className="step">
-            <div className="step-number">2</div>
+            <div className="step-number" style={{ background: 'rgba(120, 220, 232, 0.12)', color: '#78dce8' }}>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="4" y="4" width="16" height="16" rx="2" /><rect x="9" y="9" width="6" height="6" />
+                <line x1="9" y1="1" x2="9" y2="4" /><line x1="15" y1="1" x2="15" y2="4" />
+                <line x1="9" y1="20" x2="9" y2="23" /><line x1="15" y1="20" x2="15" y2="23" />
+              </svg>
+            </div>
             <div>
-              <h3>Connect</h3>
+              <h3>Silicon Systems</h3>
               <p>
-                Link your modules, APIs, and data sources. The Nexus graph engine
-                resolves dependencies and optimizes the data flow between services.
+                Custom AI accelerators, FPGA implementations, neuromorphic computing, and
+                advanced chip architectures. Designing hardware that is purpose-built for
+                the demands of modern AI workloads.
               </p>
             </div>
           </div>
           <div className="step">
-            <div className="step-number">3</div>
+            <div className="step-number" style={{ background: 'rgba(169, 220, 118, 0.12)', color: '#a9dc76' }}>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" />
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              </svg>
+            </div>
             <div>
-              <h3>Deploy</h3>
+              <h3>Real-World Deployment</h3>
               <p>
-                Ship to the edge with one push. Automatic scaling, rollbacks, and
-                observability come standard. Monitor everything from the Nexus dashboard.
+                Moving beyond simulation into applied systems that operate under real-world constraints.
+                End-to-end pipelines from training to on-device inference in industrial, medical,
+                and autonomous systems.
               </p>
             </div>
-          </div>
-        </div>
-
-        <div className="code-block">
-          <div className="code-header">
-            <span className="code-dot red" />
-            <span className="code-dot yellow" />
-            <span className="code-dot green" />
-            <span className="code-filename">terminal</span>
-          </div>
-          <div className="code-body">
-            <pre>
-{`$ npx nexus init my-app
-  → Detected: React + Node.js + PostgreSQL
-  → Generated nexus.config.js
-  → Modules: auth, api, data
-
-$ npx nexus deploy
-  → Building...  done (1.2s)
-  → Deploying to 3 regions...
-  → Live at nexus.app/my-app ✓`}
-            </pre>
           </div>
         </div>
       </section>
 
-      {/* ─── 04 Metrics ─── */}
-      <section id="metrics" className="section" ref={metricsRef}>
-        <div className="section-number">04 &mdash; By The Numbers</div>
-        <h2 className="section-title">Built to Scale</h2>
-        <p className="section-subtitle">Trusted by teams shipping to millions of users</p>
+      {/* ─── 04 Community ─── */}
+      <section id="community" className="section" ref={communityRef}>
+        <div className="section-number">04 &mdash; Community</div>
+        <h2 className="section-title">A Growing Global Network</h2>
+        <p className="section-subtitle">Building connections that drive innovation</p>
+        <p className="section-body">
+          As a growing global community, NEXUS is committed to building connections among academic
+          researchers, industry experts, and emerging talent. Through seminars, collaborative initiatives,
+          and shared research platforms, the institute aims to become a trusted hub for applied intelligence
+          research and innovation.
+        </p>
 
         <div className="metrics-row">
           <div className="metric-card">
-            <div className="metric-value" style={{ color: '#c8a2ff' }}>50K+</div>
-            <div className="metric-label">Projects Deployed</div>
+            <div className="metric-value" style={{ color: '#c8a2ff' }}>
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+            </div>
+            <div className="metric-label">Researchers &amp; Engineers</div>
           </div>
           <div className="metric-card">
-            <div className="metric-value" style={{ color: '#78dce8' }}>200ms</div>
-            <div className="metric-label">Avg. Response Time</div>
+            <div className="metric-value" style={{ color: '#78dce8' }}>
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+              </svg>
+            </div>
+            <div className="metric-label">Seminars &amp; Workshops</div>
           </div>
           <div className="metric-card">
-            <div className="metric-value" style={{ color: '#a9dc76' }}>99.99%</div>
-            <div className="metric-label">Availability</div>
+            <div className="metric-value" style={{ color: '#a9dc76' }}>
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" />
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              </svg>
+            </div>
+            <div className="metric-label">Collaborative Initiatives</div>
           </div>
           <div className="metric-card">
-            <div className="metric-value" style={{ color: '#ff7eb6' }}>40+</div>
-            <div className="metric-label">Edge Regions</div>
+            <div className="metric-value" style={{ color: '#ff7eb6' }}>
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              </svg>
+            </div>
+            <div className="metric-label">Shared Research Platforms</div>
           </div>
         </div>
 
         <div className="section-callout" style={{ marginTop: '3rem' }}>
-          Nexus handles the infrastructure so you can focus on what matters &mdash;
-          building great products. No ops team required.
+          By encouraging interdisciplinary dialogue and joint research efforts, NEXUS seeks to contribute
+          to the development of next-generation intelligent technologies that are efficient, reliable,
+          and impactful.
         </div>
       </section>
 
-      {/* ─── 05 CTA ─── */}
-      <section id="get-started" className="cta-section" ref={ctaRef}>
-        <h2>Ready to Build?</h2>
+      {/* ─── 05 Connect ─── */}
+      <section id="connect" className="cta-section" ref={connectRef}>
+        <img
+          src={import.meta.env.BASE_URL + 'logo.png'}
+          alt="NEXUS"
+          className="cta-logo"
+        />
+        <h2>Join the NEXUS Community</h2>
         <p>
-          Get started in minutes. No credit card, no setup wizards, no friction.
+          Whether you&apos;re a researcher, engineer, or innovator &mdash; there&apos;s a place for you at NEXUS.
+          Let&apos;s build the future of applied intelligence together.
         </p>
         <div className="cta-buttons">
-          <a className="cta-btn" href="#">
-            Get Started
+          <a className="cta-btn" href="mailto:nexus@example.com">
+            Get in Touch
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <line x1="5" y1="12" x2="19" y2="12" />
               <polyline points="12 5 19 12 12 19" />
             </svg>
           </a>
           <a className="cta-btn-outline" href="#">
-            View Documentation
+            View Research
           </a>
         </div>
       </section>
 
       {/* ─── Footer ─── */}
       <footer className="footer">
-        <p>&copy; 2026 Nexus &middot; Built with purpose</p>
-        <p>
-          <a href="#">GitHub</a> &nbsp;&middot;&nbsp; <a href="#">Docs</a> &nbsp;&middot;&nbsp; <a href="#">Twitter</a>
-        </p>
+        <p>&copy; 2026 NEXUS Applied Intelligence Institute</p>
+        <p>Algorithms &middot; Silicon &middot; Deployment</p>
       </footer>
     </>
   )
