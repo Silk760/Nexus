@@ -561,6 +561,238 @@ body {
   opacity: 0.7;
 }
 
+/* ─── Hero Quote ─── */
+.hero-quote {
+  color: #6e6e73;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  padding-left: 1rem;
+  border-left: 2px solid #333;
+  font-weight: 300;
+}
+
+/* ─── Pillars Row ─── */
+.pillars-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  margin-top: 3rem;
+}
+
+.pillar-card {
+  text-align: center;
+  padding: 2rem 1.2rem;
+  background: #141414;
+  border: 1px solid #1a1a1a;
+  border-radius: 14px;
+  transition: border-color 0.3s;
+}
+
+.pillar-card:hover {
+  border-color: #333;
+}
+
+.pillar-icon {
+  margin-bottom: 1rem;
+}
+
+.pillar-card h4 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.pillar-card p {
+  font-size: 0.82rem;
+  color: #6e6e73;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* ─── Wide sections ─── */
+.section-wide {
+  max-width: 1100px;
+}
+
+/* ─── Curriculum Grid ─── */
+.curriculum-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.curriculum-card {
+  background: #141414;
+  border: 1px solid #1a1a1a;
+  border-radius: 14px;
+  padding: 1.8rem;
+  transition: border-color 0.3s;
+}
+
+.curriculum-card:hover {
+  border-color: #333;
+}
+
+.curriculum-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
+}
+
+.curriculum-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.curriculum-header h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.curriculum-topics {
+  list-style: none;
+}
+
+.curriculum-topics li {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.5rem 0;
+  font-size: 0.88rem;
+  color: #86868b;
+  font-weight: 400;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.curriculum-topics li:last-child {
+  border-bottom: none;
+}
+
+.topic-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ─── Lectures Grid ─── */
+.lectures-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.2rem;
+  margin-top: 3rem;
+}
+
+.lecture-card {
+  background: #141414;
+  border: 1px solid #1a1a1a;
+  border-radius: 14px;
+  padding: 1.5rem 1.8rem;
+  transition: border-color 0.3s;
+}
+
+.lecture-card:hover {
+  border-color: #333;
+}
+
+.lecture-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+}
+
+.lecture-type {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #6e6e73;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.lecture-tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid;
+  letter-spacing: 0.03em;
+}
+
+.lecture-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f5f5f7;
+  line-height: 1.4;
+  margin-bottom: 0.8rem;
+}
+
+.lecture-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #6e6e73;
+  font-weight: 400;
+}
+
+.lecture-date {
+  color: #86868b;
+}
+
+/* ─── Feature Dot (research cards) ─── */
+.feature-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+/* ─── Community Grid ─── */
+.community-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+  margin-top: 3rem;
+}
+
+.community-card {
+  text-align: center;
+  padding: 2rem 1.2rem;
+  background: #141414;
+  border: 1px solid #1a1a1a;
+  border-radius: 14px;
+  transition: border-color 0.3s;
+}
+
+.community-card:hover {
+  border-color: #333;
+}
+
+.community-icon {
+  margin-bottom: 1rem;
+}
+
+.community-card h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.4rem;
+}
+
+.community-card p {
+  font-size: 0.82rem;
+  color: #6e6e73;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
 /* ─── Footer ─── */
 .footer {
   text-align: center;
@@ -615,5 +847,14 @@ body {
 
   .nav-links {
     display: none;
+  }
+
+  .pillars-row {
+    grid-template-columns: 1fr;
+  }
+
+  .curriculum-grid,
+  .lectures-grid {
+    grid-template-columns: 1fr;
   }
 }
