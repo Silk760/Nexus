@@ -74,14 +74,6 @@ const COURSES = [
     color: '#78dce8',
   },
   {
-    title: 'HW/SW Co-Design for AI',
-    slug: 'hwsw-codesign',
-    access: 'Paid',
-    price: '820 SAR',
-    priceSar: 820,
-    color: '#c8a2ff',
-  },
-  {
     title: 'Efficient Neural Architecture Search',
     slug: 'efficient-nas',
     access: 'Paid',
