@@ -757,119 +757,131 @@ body {
   color: #86868b;
 }
 
-/* ─── Seminars: Theme Blocks ─── */
-.seminar-themes {
+/* ─── Seminars: Schedule Bar ─── */
+.seminar-schedule-bar {
   display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
-  margin-top: 3rem;
-}
-
-.seminar-theme-block {
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2.5rem;
+  padding: 1.2rem 1.5rem;
   background: #141414;
   border: 1px solid #1a1a1a;
-  border-radius: 14px;
-  padding: 2rem;
-  transition: border-color 0.3s;
+  border-radius: 12px;
 }
 
-.seminar-theme-block:hover {
-  border-color: #282828;
-}
-
-.seminar-theme-header {
+.seminar-schedule-item {
   display: flex;
   align-items: center;
-  gap: 0.7rem;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #1a1a1a;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #86868b;
+  font-weight: 500;
 }
 
-.seminar-theme-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
+.seminar-schedule-item svg {
+  color: #c8a2ff;
   flex-shrink: 0;
 }
 
-.seminar-theme-name {
-  font-size: 1.15rem;
-  font-weight: 600;
+/* ─── Seminars: Speaker Cards ─── */
+.seminars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.seminar-card {
+  background: #141414;
+  border: 1px solid #1a1a1a;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.seminar-card:hover {
+  border-color: #333;
+  transform: translateY(-2px);
+}
+
+.seminar-accent {
+  width: 4px;
+  flex-shrink: 0;
+}
+
+.seminar-body {
+  padding: 1.5rem 1.8rem;
   flex: 1;
 }
 
-.seminar-theme-badge {
+.seminar-top {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.seminar-badge {
   font-size: 0.7rem;
   font-weight: 600;
-  color: #a9dc76;
-  background: rgba(169, 220, 118, 0.1);
-  padding: 0.25rem 0.7rem;
+  padding: 0.2rem 0.6rem;
   border-radius: 6px;
   letter-spacing: 0.03em;
 }
 
-.seminar-speakers-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1rem;
+.seminar-badge--free {
+  color: #a9dc76;
+  background: rgba(169, 220, 118, 0.1);
 }
 
-.speaker-card {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem 1.2rem;
-  background: #0f0f0f;
-  border: 1px solid #1a1a1a;
-  border-radius: 10px;
-  transition: border-color 0.3s;
+.seminar-badge--confirmed {
+  color: #78dce8;
+  background: rgba(120, 220, 232, 0.1);
 }
 
-.speaker-card:hover {
-  border-color: #333;
+.seminar-badge--pending {
+  color: #6e6e73;
+  background: rgba(255, 255, 255, 0.05);
 }
 
-.speaker-photo {
-  width: 48px;
-  height: 48px;
+.seminar-avatar {
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   object-fit: cover;
-  flex-shrink: 0;
+  margin-bottom: 0.8rem;
 }
 
-.speaker-info {
-  flex: 1;
-  min-width: 0;
-}
-
-.speaker-name {
-  font-size: 0.9rem;
+.seminar-speaker-name {
+  font-size: 1rem;
   font-weight: 600;
   color: #f5f5f7;
-  margin-bottom: 0.15rem;
+  margin-bottom: 0.2rem;
 }
 
-.speaker-talk {
-  font-size: 0.8rem;
+.seminar-affiliation {
+  font-size: 0.82rem;
   color: #86868b;
   font-weight: 400;
-  line-height: 1.4;
-  margin-bottom: 0.3rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  margin-bottom: 0.6rem;
 }
 
-.speaker-date {
+.seminar-date-row {
   display: flex;
   align-items: center;
-  gap: 0.35rem;
-  font-size: 0.72rem;
+  gap: 0.4rem;
+  font-size: 0.78rem;
   color: #6e6e73;
   font-weight: 400;
 }
 
+.seminar-zoom {
+  margin-top: 0.8rem;
+  display: inline-flex;
+}
+
+/* ─── Zoom Link (shared) ─── */
 .zoom-link {
   display: flex;
   align-items: center;
@@ -1572,10 +1584,19 @@ body {
   .curriculum-grid,
   .lectures-grid,
   .courses-grid,
-  .seminar-speakers-grid,
+  .seminars-grid,
   .workshops-grid,
   .community-grid {
     grid-template-columns: 1fr;
+  }
+
+  .seminar-schedule-bar {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .seminar-body {
+    padding: 1.2rem;
   }
 
   .feature-grid {
@@ -1644,13 +1665,9 @@ body {
     flex-wrap: wrap;
   }
 
-  /* ─ Seminar speakers ─ */
-  .speaker-talk {
-    white-space: normal;
-  }
-
-  .speaker-card {
-    flex-wrap: wrap;
+  /* ─ Seminar cards ─ */
+  .seminar-card {
+    flex-direction: row;
   }
 
   /* ─ Footer ─ */
