@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom'
 
 const NAV_ITEMS = [
   { label: 'Philosophy', path: '/philosophy' },
-  { label: 'Curriculum', path: '/curriculum' },
   { label: 'Courses', path: '/courses' },
   { label: 'Seminars', path: '/seminars' },
   { label: 'Training', path: '/training' },

@@ -3,60 +3,103 @@ import { checkout } from '../lib/checkout'
 
 const COURSES = [
   {
-    title: 'Introduction to ML Systems',
-    slug: 'intro-ml-systems',
-    time: 'Mon & Wed, 10:00 AM – 11:30 AM',
+    title: 'Computer Architecture',
+    slug: 'computer-architecture',
     access: 'Open',
     link: '#',
     color: '#c8a2ff',
   },
   {
-    title: 'Deep Learning & DNN Architectures',
-    slug: 'deep-learning-dnn',
-    time: 'Tue & Thu, 1:00 PM – 2:30 PM',
+    title: 'FPGA Design & Programming',
+    slug: 'fpga-design',
+    access: 'Open',
+    link: '#',
+    color: '#78dce8',
+  },
+  {
+    title: 'Mathematics of Machine Learning',
+    slug: 'math-ml',
+    access: 'Open',
+    link: '#',
+    color: '#a9dc76',
+  },
+  {
+    title: 'Computer Vision',
+    slug: 'computer-vision',
+    access: 'Open',
+    link: '#',
+    color: '#ffab70',
+  },
+  {
+    title: 'Deep Learning',
+    slug: 'deep-learning',
     access: 'Open',
     link: '#',
     color: '#c8a2ff',
+  },
+  {
+    title: 'Information Retrieval',
+    slug: 'information-retrieval',
+    access: 'Open',
+    link: '#',
+    color: '#ff7eb6',
+  },
+  {
+    title: 'Game Design',
+    slug: 'game-design',
+    access: 'Open',
+    link: '#',
+    color: '#ffab70',
+  },
+  {
+    title: 'Game Development with Unity',
+    slug: 'game-dev-unity',
+    access: 'Open',
+    link: '#',
+    color: '#78dce8',
+  },
+  {
+    title: 'Edge AI & TinyML',
+    slug: 'edge-ai-tinyml',
+    access: 'Open',
+    link: '#',
+    color: '#a9dc76',
   },
   {
     title: 'AI Accelerator Design',
     slug: 'ai-accelerator-design',
-    time: 'Wed & Fri, 9:00 AM – 10:30 AM',
     access: 'Paid',
     price: '750 SAR',
     priceSar: 750,
     color: '#78dce8',
   },
   {
-    title: 'Edge Computing & TinyML',
-    slug: 'edge-computing-tinyml',
-    time: 'Mon & Wed, 2:00 PM – 3:30 PM',
+    title: 'HW/SW Co-Design for AI',
+    slug: 'hwsw-codesign',
     access: 'Paid',
-    price: '675 SAR',
-    priceSar: 675,
-    color: '#78dce8',
-  },
-  {
-    title: 'Model Compression & Quantization',
-    slug: 'model-compression-quantization',
-    time: 'Tue & Thu, 10:00 AM – 11:30 AM',
-    access: 'Open',
-    link: '#',
-    color: '#a9dc76',
+    price: '820 SAR',
+    priceSar: 820,
+    color: '#c8a2ff',
   },
   {
     title: 'Efficient Neural Architecture Search',
     slug: 'efficient-nas',
-    time: 'Fri, 1:00 PM – 4:00 PM',
     access: 'Paid',
     price: '560 SAR',
     priceSar: 560,
     color: '#a9dc76',
   },
   {
+    title: 'Neuromorphic Computing Systems',
+    slug: 'neuromorphic-computing',
+    access: 'Paid',
+    price: '750 SAR',
+    priceSar: 750,
+    color: '#ff7eb6',
+  },
+  {
     title: 'MLOps & Scalable Infrastructure',
     slug: 'mlops-scalable-infra',
-    time: 'Mon & Wed, 4:00 PM – 5:30 PM',
     access: 'Open',
     link: '#',
     color: '#ffab70',
@@ -64,41 +107,6 @@ const COURSES = [
   {
     title: 'Responsible AI & Ethics',
     slug: 'responsible-ai-ethics',
-    time: 'Thu, 10:00 AM – 12:00 PM',
-    access: 'Open',
-    link: '#',
-    color: '#ff7eb6',
-  },
-  {
-    title: 'HW/SW Co-Design for AI',
-    slug: 'hwsw-codesign',
-    time: 'Tue & Thu, 3:00 PM – 4:30 PM',
-    access: 'Paid',
-    price: '820 SAR',
-    priceSar: 820,
-    color: '#c8a2ff',
-  },
-  {
-    title: 'On-Device Inference & Deployment',
-    slug: 'on-device-inference',
-    time: 'Wed, 2:00 PM – 5:00 PM',
-    access: 'Open',
-    link: '#',
-    color: '#ffab70',
-  },
-  {
-    title: 'Neuromorphic Computing Systems',
-    slug: 'neuromorphic-computing',
-    time: 'Mon & Fri, 11:00 AM – 12:30 PM',
-    access: 'Paid',
-    price: '750 SAR',
-    priceSar: 750,
-    color: '#78dce8',
-  },
-  {
-    title: 'Industrial AI Applications',
-    slug: 'industrial-ai-apps',
-    time: 'Tue & Thu, 9:00 AM – 10:30 AM',
     access: 'Open',
     link: '#',
     color: '#ff7eb6',
@@ -126,7 +134,7 @@ export default function Courses() {
 
   return (
     <section className="section section-wide page-section visible">
-      <div className="section-number">03 &mdash; Courses</div>
+      <div className="section-number">02 &mdash; Courses</div>
       <h2 className="section-title">Course Catalog</h2>
       <p className="section-subtitle">
         All courses are designed and taught by NEXUS faculty &mdash; some open to the public,
@@ -145,12 +153,6 @@ export default function Courses() {
                 </span>
               </div>
               <h3 className="course-title">{course.title}</h3>
-              <div className="course-time">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
-                </svg>
-                {course.time}
-              </div>
 
               {course.access === 'Open' ? (
                 <div className="course-actions">

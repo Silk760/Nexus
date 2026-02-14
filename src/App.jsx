@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import Layout from './components/Layout'
 import Home from './pages/Home'
 import Philosophy from './pages/Philosophy'
-import Curriculum from './pages/Curriculum'
+
 import Courses from './pages/Courses'
 import Seminars from './pages/Seminars'
 import Training from './pages/Training'
@@ -28,7 +28,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/philosophy" element={<Philosophy />} />
-          <Route path="/curriculum" element={<Curriculum />} />
+
           <Route path="/courses" element={<Courses />} />
           <Route path="/seminars" element={<Seminars />} />
           <Route path="/training" element={<Training />} />
