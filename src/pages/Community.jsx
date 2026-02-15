@@ -1,15 +1,14 @@
+import { useLanguage } from '../i18n/LanguageContext'
+
 export default function Community() {
+  const { t } = useLanguage()
+
   return (
     <section className="section page-section visible">
-      <div className="section-number">05 &mdash; Community</div>
-      <h2 className="section-title">A Growing Global Network</h2>
-      <p className="section-subtitle">Academic researchers, industry experts, and emerging talent &mdash; together</p>
-      <p className="section-body">
-        NEXUS is committed to building connections among academic researchers, industry experts, and
-        emerging talent worldwide. Through seminars, collaborative initiatives, shared research platforms,
-        and open-access materials, the institute fosters an environment where interdisciplinary dialogue
-        drives innovation.
-      </p>
+      <div className="section-number">{t('community.number')}</div>
+      <h2 className="section-title">{t('community.title')}</h2>
+      <p className="section-subtitle">{t('community.subtitle')}</p>
+      <p className="section-body">{t('community.body')}</p>
 
       <div className="community-grid">
         <div className="community-card">
@@ -19,8 +18,8 @@ export default function Community() {
               <path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" />
             </svg>
           </div>
-          <h4>Collaborative Research</h4>
-          <p>Joint projects across institutions, disciplines, and industry</p>
+          <h4>{t('community.collabResearch')}</h4>
+          <p>{t('community.collabResearchDesc')}</p>
         </div>
         <div className="community-card">
           <div className="community-icon" style={{ color: '#78dce8' }}>
@@ -29,8 +28,8 @@ export default function Community() {
               <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
             </svg>
           </div>
-          <h4>Open Materials</h4>
-          <p>Lecture notes, slides, code, and datasets shared freely with the community</p>
+          <h4>{t('community.openMaterials')}</h4>
+          <p>{t('community.openMaterialsDesc')}</p>
         </div>
         <div className="community-card">
           <div className="community-icon" style={{ color: '#a9dc76' }}>
@@ -39,8 +38,8 @@ export default function Community() {
               <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
             </svg>
           </div>
-          <h4>Global Reach</h4>
-          <p>Building a worldwide network of researchers and practitioners</p>
+          <h4>{t('community.globalReach')}</h4>
+          <p>{t('community.globalReachDesc')}</p>
         </div>
         <div className="community-card">
           <div className="community-icon" style={{ color: '#ff7eb6' }}>
@@ -48,15 +47,13 @@ export default function Community() {
               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
             </svg>
           </div>
-          <h4>Emerging Talent</h4>
-          <p>Mentorship, internships, and pathways for the next generation of AI researchers</p>
+          <h4>{t('community.emergingTalent')}</h4>
+          <p>{t('community.emergingTalentDesc')}</p>
         </div>
       </div>
 
       <div className="section-callout" style={{ marginTop: '2.5rem' }}>
-        By encouraging interdisciplinary dialogue and joint research efforts, NEXUS seeks to contribute
-        to the development of next-generation intelligent technologies that are efficient, reliable,
-        and impactful.
+        {t('community.callout')}
       </div>
     </section>
   )

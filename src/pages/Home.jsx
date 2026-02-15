@@ -1,36 +1,34 @@
-import { Link } from 'react-router-dom'
 import CircuitCanvas from '../components/CircuitCanvas'
+import { useLanguage } from '../i18n/LanguageContext'
 
 export default function Home() {
+  const { t } = useLanguage()
+
   return (
     <section className="hero">
       <div className="hero-content">
         <div className="hero-text">
-          <span className="hero-label">Research &amp; Education</span>
+          <span className="hero-label">{t('home.heroLabel')}</span>
           <h1 className="hero-title">
-            NEXUS<br />
-            <span className="hero-title-light">Applied Intelligence Institute</span>
+            {t('home.heroTitle')}<br />
+            <span className="hero-title-light">{t('home.heroTitleLight')}</span>
           </h1>
-          <p className="hero-subtitle">
-            Bridging the gap between algorithms and silicon &mdash; from theory
-            to real-world deployment. Open, collaborative, and built for learners
-            and researchers at every level.
-          </p>
+          <p className="hero-subtitle">{t('home.heroSubtitle')}</p>
           <div className="hero-quote">
-            <em>&ldquo;If you want to go fast, go alone. If you want to go far, go together.&rdquo;</em>
+            <em>{t('home.heroQuote')}</em>
           </div>
           <div className="stats-row">
             <div className="stat-card">
-              <div className="stat-value">6</div>
-              <div className="stat-label">Course Tracks</div>
+              <div className="stat-value">{t('home.statCoursesValue')}</div>
+              <div className="stat-label">{t('home.statCoursesLabel')}</div>
             </div>
             <div className="stat-card">
-              <div className="stat-value">24+</div>
-              <div className="stat-label">Topics</div>
+              <div className="stat-value">{t('home.statTopicsValue')}</div>
+              <div className="stat-label">{t('home.statTopicsLabel')}</div>
             </div>
             <div className="stat-card">
-              <div className="stat-value">Open</div>
-              <div className="stat-label">Access</div>
+              <div className="stat-value">{t('home.statOpenValue')}</div>
+              <div className="stat-label">{t('home.statOpenLabel')}</div>
             </div>
           </div>
         </div>

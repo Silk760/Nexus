@@ -1,19 +1,21 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { useLanguage } from '../i18n/LanguageContext'
 
-const NAV_ITEMS = [
-  { label: 'Philosophy', path: '/philosophy' },
-  { label: 'Courses', path: '/courses' },
-  { label: 'Seminars', path: '/seminars' },
-  { label: 'Training', path: '/training' },
-  { label: 'Research', path: '/research' },
-  { label: 'Community', path: '/community' },
-  { label: 'Connect', path: '/connect' },
+const NAV_KEYS = [
+  { key: 'philosophy', path: '/philosophy' },
+  { key: 'courses', path: '/courses' },
+  { key: 'seminars', path: '/seminars' },
+  { key: 'training', path: '/training' },
+  { key: 'research', path: '/research' },
+  { key: 'community', path: '/community' },
+  { key: 'connect', path: '/connect' },
 ]
 
 export default function Layout({ children }) {
   const location = useLocation()
   const [menuOpen, setMenuOpen] = useState(false)
+  const { lang, toggleLang, t } = useLanguage()
 
   function handleNavClick() {
     setMenuOpen(false)
@@ -26,9 +28,16 @@ export default function Layout({ children }) {
           <img src="/logo.png" alt="NEXUS" className="nav-logo-img" />
           <div className="nav-logo-text">
             <span className="nav-logo-name">NEXUS</span>
-            <span className="nav-logo-sub">Applied Intelligence Institute</span>
+            <span className="nav-logo-sub">{t('nav.logoSub')}</span>
           </div>
         </Link>
+        <button
+          className="lang-toggle"
+          onClick={toggleLang}
+          aria-label="Toggle language"
+        >
+          {lang === 'en' ? 'AR' : 'EN'}
+        </button>
         <button
           className="nav-hamburger"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -45,14 +54,14 @@ export default function Layout({ children }) {
           )}
         </button>
         <div className={`nav-links${menuOpen ? ' open' : ''}`}>
-          {NAV_ITEMS.map(({ label, path }) => (
+          {NAV_KEYS.map(({ key, path }) => (
             <Link
               key={path}
               className={`nav-link${location.pathname === path ? ' active' : ''}`}
               to={path}
               onClick={handleNavClick}
             >
-              {label}
+              {t(`nav.${key}`)}
             </Link>
           ))}
         </div>
@@ -63,8 +72,13 @@ export default function Layout({ children }) {
       </main>
 
       <footer className="footer">
-        <p>&copy; 2026 NEXUS Applied Intelligence Institute</p>
-        <p>Algorithms &middot; Silicon &middot; Deployment &middot; Open Knowledge</p>
+        <p>{t('footer.copyright')}</p>
+        <p>{t('footer.tagline')}</p>
+        <p className="footer-policy-links">
+          <Link to="/privacy">{t('footer.privacy')}</Link>
+          <span>&middot;</span>
+          <Link to="/refund">{t('footer.refund')}</Link>
+        </p>
       </footer>
     </>
   )
