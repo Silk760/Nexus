@@ -136,43 +136,50 @@ export default {
     number: '05 \u2014 Training',
     title: 'Hands-On Training Workshops',
     subtitle:
-      'Intensive one-week workshops \u2014 only 20 seats per batch, new batch every two weeks',
+      'Intensive one-week workshops \u2014 only 20 seats per workshop, starting mid-March 2026',
     seatsOnlyValue: '20',
     seatsOnlyLabel: 'Seats Only',
     sarSeatValue: '1,000',
     sarSeatLabel: 'SAR / Seat',
     oneWeekValue: '20\u201325h',
-    oneWeekLabel: 'One Week',
-    newBatchesValue: 'Bi-Weekly',
-    newBatchesLabel: 'New Batches',
-    upcomingBatches: 'Upcoming Batches \u2014 Reserve Your Seat',
-    loadingBatches: 'Loading batches\u2026',
-    noBatches: 'No upcoming batches at the moment.',
+    oneWeekLabel: 'Per Workshop',
+    newBatchesValue: '6',
+    newBatchesLabel: 'Workshops',
+    scheduleTitle: 'Workshop Schedule',
     registered: 'registered',
     seatsLeft: 'seats left',
-    batchFull: 'Batch Full',
+    workshopFull: 'Workshop Full',
     soldOut: 'Sold Out',
-    payNow: 'Pay Now',
-    redirecting: 'Redirecting\u2026',
-    tabby: 'Tabby',
-    tamara: 'Tamara',
-    whatYouLearn: "What You'll Learn",
+    registerTitle: 'Register for this workshop',
+    registerWithLinkedIn: 'Register with LinkedIn',
+    registerWithEmail: 'Register with Email',
+    orText: 'or',
+    nameLabel: 'Full Name',
+    emailLabel: 'Email Address',
+    submitRegistration: 'Submit Registration',
+    registrationConfirmed: 'Registration confirmed!',
+    registrationConfirmedDesc: "You're registered for this workshop. We'll send details to your email.",
+    alreadyRegistered: 'You are already registered for this workshop.',
+    registrationFailed: 'Registration failed. Please try again.',
+    preferred: 'Preferred',
+    enterName: 'Enter your full name',
+    enterEmail: 'Enter your email address',
+    submitting: 'Submitting\u2026',
+    priceNote: '1,000 SAR / seat \u2014 payment handled separately',
     forCompanies: 'For Companies',
-    corpTitle: 'Book the Entire Batch for Your Team',
+    corpTitle: 'Book the Entire Workshop for Your Team',
     corpDesc:
       'Reserve all 20 seats for your organization. Get a dedicated instructor, customized focus areas, and a private cohort experience \u2014 all in one intensive week.',
     corpPrice: '50,000 SAR',
     corpPriceDetail:
-      'full batch \u00B7 20 seats \u00B7 20\u201325 hours \u00B7 1 week',
-    corpPayNow: 'Pay Now',
-    corpPayTabby: 'Pay via Tabby',
-    corpPayTamara: 'Pay via Tamara',
-    corpContact: 'Or contact us directly',
+      'full workshop \u00B7 20 seats \u00B7 20\u201325 hours \u00B7 1 week',
+    corpContact: 'Contact us directly',
     callout:
-      'All training workshops are hands-on and practical. Participants leave with real projects, working prototypes, and actionable skills they can apply immediately. Seats are strictly limited to 20 per batch to ensure quality interaction. New batches open every two weeks.',
+      'All training workshops are hands-on and practical. Participants leave with real projects, working prototypes, and actionable skills they can apply immediately. Seats are strictly limited to 20 per workshop to ensure quality interaction.',
     workshops: [
       {
         title: 'AI for Workplace Productivity',
+        dates: 'Mar 15\u201319, 2026',
         description:
           'Leverage AI tools to automate repetitive tasks, streamline workflows, and boost team output across departments.',
         topics: [
@@ -184,6 +191,7 @@ export default {
       },
       {
         title: 'Building AI Agents',
+        dates: 'Mar 22\u201326, 2026',
         description:
           'Design and deploy autonomous AI agents that can reason, plan, and execute multi-step tasks for your business.',
         topics: [
@@ -195,6 +203,7 @@ export default {
       },
       {
         title: 'AI for Decision Making',
+        dates: 'Mar 29 \u2013 Apr 2, 2026',
         description:
           'Use AI-driven analytics and forecasting to make smarter, data-informed decisions at every level of your organization.',
         topics: [
@@ -206,6 +215,7 @@ export default {
       },
       {
         title: 'Generative AI for Content & Marketing',
+        dates: 'Apr 5\u20139, 2026',
         description:
           'Create high-quality content, visuals, and marketing campaigns using the latest generative AI models and tools.',
         topics: [
@@ -217,6 +227,7 @@ export default {
       },
       {
         title: 'AI Integration & APIs',
+        dates: 'Apr 12\u201316, 2026',
         description:
           'Connect AI services into your existing software stack \u2014 from CRM to ERP \u2014 with practical, hands-on integration projects.',
         topics: [
@@ -228,6 +239,7 @@ export default {
       },
       {
         title: 'AI Strategy for Leaders',
+        dates: 'Apr 19\u201323, 2026',
         description:
           'A non-technical workshop for executives and managers to understand AI capabilities, risks, and how to lead AI adoption.',
         topics: [

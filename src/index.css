@@ -1320,6 +1320,309 @@ body {
   letter-spacing: 0.06em;
 }
 
+/* Workshop Schedule Layout */
+.training-schedule {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.workshop-week-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.7rem;
+  border-radius: 6px;
+  margin-bottom: 0.6rem;
+}
+
+.workshop-date-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #b0b0b0;
+  font-weight: 500;
+  margin-bottom: 0.8rem;
+}
+
+.workshop-date-row svg {
+  color: #6e6e73;
+  flex-shrink: 0;
+}
+
+.workshop-seats-section {
+  margin-top: 0.5rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid #1a1a1a;
+}
+
+.workshop-price-note {
+  font-size: 0.75rem;
+  color: #6e6e73;
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+
+/* Training Registration Form */
+.training-reg-section {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #1a1a1a;
+}
+
+.training-reg-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.training-reg-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #f5f5f7;
+}
+
+.training-reg-seats {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  color: #a9dc76;
+  background: rgba(169, 220, 118, 0.1);
+}
+
+.training-reg-seats--low {
+  color: #ffab70;
+  background: rgba(255, 171, 112, 0.1);
+}
+
+.training-reg-seats--full {
+  color: #ff5f57;
+  background: rgba(255, 95, 87, 0.1);
+}
+
+.training-reg-full {
+  color: #6e6e73;
+  font-size: 0.85rem;
+}
+
+/* Registration Tabs */
+.training-reg-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.training-reg-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #2a2a2a;
+  background: transparent;
+  color: #6e6e73;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.training-reg-tab:hover {
+  border-color: #444;
+  color: #b0b0b0;
+}
+
+.training-reg-tab--active {
+  border-color: #c8a2ff;
+  color: #f5f5f7;
+  background: rgba(200, 162, 255, 0.06);
+}
+
+.training-reg-or {
+  font-size: 0.75rem;
+  color: #444;
+  font-weight: 500;
+}
+
+.training-reg-preferred {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #a9dc76;
+  background: rgba(169, 220, 118, 0.1);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+/* LinkedIn Registration */
+.training-reg-linkedin-body {
+  margin-bottom: 0.5rem;
+}
+
+.training-reg-linkedin-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  background: #0A66C2;
+  color: #fff;
+  border: none;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.training-reg-linkedin-btn:hover {
+  background: #0b5caf;
+}
+
+.training-reg-linkedin-confirm {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.training-reg-user-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  background: rgba(10, 102, 194, 0.1);
+  border: 1px solid rgba(10, 102, 194, 0.2);
+  font-size: 0.82rem;
+  color: #86868b;
+}
+
+/* Email Registration Form */
+.training-reg-email-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.training-reg-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.training-reg-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #86868b;
+  letter-spacing: 0.03em;
+}
+
+.training-reg-input {
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #2a2a2a;
+  background: #111;
+  color: #f5f5f7;
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 400;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.training-reg-input::placeholder {
+  color: #444;
+}
+
+.training-reg-input:focus {
+  border-color: #c8a2ff;
+}
+
+/* Submit Button */
+.training-reg-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.5rem;
+  border-radius: 8px;
+  background: #c8a2ff;
+  color: #0a0a0a;
+  border: none;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+  align-self: flex-start;
+}
+
+.training-reg-submit-btn:hover {
+  background: #d4b5ff;
+}
+
+.training-reg-submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Status Messages */
+.training-reg-msg {
+  font-size: 0.82rem;
+  margin-top: 0.5rem;
+}
+
+.training-reg-msg--warn {
+  color: #ffab70;
+}
+
+.training-reg-msg--error {
+  color: #ff5f57;
+}
+
+/* Confirmed State */
+.training-reg-confirmed {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  padding: 1rem 1.2rem;
+  border-radius: 10px;
+  background: rgba(169, 220, 118, 0.08);
+  border: 1px solid rgba(169, 220, 118, 0.2);
+  margin-top: 1rem;
+}
+
+.training-reg-confirmed-icon {
+  color: #a9dc76;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.training-reg-confirmed-title {
+  color: #a9dc76;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+}
+
+.training-reg-confirmed-desc {
+  color: #86868b;
+  font-size: 0.82rem;
+}
+
 /* Corporate Block */
 .corporate-block {
   margin-top: 3rem;
@@ -1690,8 +1993,27 @@ body {
     width: 100%;
   }
 
-  .batch-pay-buttons {
-    flex-wrap: wrap;
+  .training-reg-tabs {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .training-reg-tab {
+    justify-content: center;
+  }
+
+  .training-reg-or {
+    text-align: center;
+  }
+
+  .training-reg-linkedin-confirm {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .training-reg-submit-btn {
+    align-self: stretch;
+    justify-content: center;
   }
 
   /* ─ Corporate block ─ */
@@ -1819,6 +2141,22 @@ body {
 
 [dir="rtl"] .corporate-actions {
   direction: rtl;
+}
+
+[dir="rtl"] .training-reg-section {
+  direction: rtl;
+}
+
+[dir="rtl"] .training-reg-email-form {
+  direction: rtl;
+}
+
+[dir="rtl"] .training-reg-submit-btn {
+  align-self: flex-end;
+}
+
+[dir="rtl"] .training-reg-input {
+  text-align: right;
 }
 
 @media (max-width: 768px) {
